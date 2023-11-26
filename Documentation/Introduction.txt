@@ -1,0 +1,20 @@
+What is Memory
+
+- piece of hardware that allows computer to store information
+- RAM is your computers main memory, here programs read and write information
+- ROM is a form of mem that can only be read form
+
+RAM vs ROM
+- ram is writeable and can be written or read from 
+- ram is used only for temprary storage
+- all data in RAM is lost when you power down computer 
+- use RAM when you write a program that deals with variables, ex if you write a program
+  in c with a int variable that stores '50', when you shut down this 50 is gone
+
+- ROM is permament storage, retains after power loss, cant be written for normal means
+- use ROM for programs that will never change, such as embedded programs. 
+- BIOS is stored on a ROM. 
+
+- memory is generally accessed in a linear fashion. example read from mem address 50, it 
+  will read starting at mem address 50. 
+
