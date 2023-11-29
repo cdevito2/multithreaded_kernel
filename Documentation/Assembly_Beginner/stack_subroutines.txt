@@ -1,0 +1,30 @@
+Stack allows us to store temp info that we dont plan on keeping
+
+
+ex) push 0xffff
+
+SP changes every time we step. stack grows downwards from memory. so when we push
+ffff to stack at stack pointer poisition, 
+
+ex) pop ax
+
+take value back off and put it in register
+
+
+stack pointer relies on SS segment. this is 0700 in example 
+
+
+
+calling subroutines also uses the stack aswell
+'call' calls a subroutine and 'ret' returns from a subroutine giving back control
+
+call uses stack to store return addresses. 
+if you look at memory it stores the address to return to. when 'ret' happens it pops the
+return address from the stack so it knows where to execute from 
+
+
+endianness
+
+little endian flips the byes. if we push 0xFFF4, its stored as F4 FF for little endian
+
+big endian means it willl be in order, so stored as FF F4. intel uses little endian

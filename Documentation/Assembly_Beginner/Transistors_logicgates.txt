@@ -1,0 +1,34 @@
+- instruction is binary , gets passed through circuit in proc which reslts in outcome
+
+- logic gates are the way you position transistors to make certain things happen, such as
+  AND XOR gates etc
+
+- Alu is a cictuit for adding, etc
+
+- AND gate , if both inputs are 1 it outputs 1, similar but diff logic for OR, XOR etc
+
+- when proc reads instructions ints, data pins will be high/low with current, 
+  so when a byte is laoded from memory, it will fill 8 or whatever data pins with 
+  the value of that byte. then it would pass through a compilcated circuit and 
+  determine wchich instruction you are trying to do. 
+
+ex) binary 11 = decimal 3, in the example circuit one of the instructions is binary 11
+    and the reslt of binary 11 could be MOV 
+
+ex ) binary equivalent of JMP instruction would change the program counter register (holds
+      value of instruction in RAM that ur currently exxecuting)
+
+     so then in the circtuiry of proc, it would go through all the and gates and all that
+     until it gets directrly to the circuitry in the proc responsible for copying the 
+     value you want to jump to , to the program counter
+
+
+
+
+summary:
+
+assmebly becomes machine3 code which corresponds to the instructions from the instruction set 
+processor has readable manual ( instruction set), which is built into the processor 
+via transistors and logic gates that make up different connections and rules of how the
+date can be transferred along the circuit. 
+

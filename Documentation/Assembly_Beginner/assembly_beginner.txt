@@ -1,0 +1,72 @@
+Intro:
+
+in processor we have instruction set - these are hardwired circuits to perform instructions such
+as adding 2 numbers together
+
+- before assmebly ppl would write these instructions manually
+- this was tedius as instructions are basically binary numbers and they are complicated
+
+- assembly is a human readable way of representing machine code/ instructions in instruction set
+- we put our assembly into an assembler, which takes it and compiles/
+  assembles into machine code so it can be run directly on thte processor.
+
+- process can start executing the machine code after this
+- you cant run assembly on processor, it needs to be assembled first
+
+
+Writing code commands
+
+org 100h - load the program written into mem address 100 hex, and start executing from
+           there. so this line means that the program will be loaded into this address,
+           and when we assemble it helps make sure we offset correctly.
+
+ret - means we are returning from a subroutine
+    - explain todo
+
+mov - move data to some memory or register
+
+int - interrupt, int 10h means call interrupt 10h, which is responsible for outputting screen
+
+db - databytes, allows us to specify number of characters
+
+jmp - skip over sections
+
+xx : - name followed by colon is a section. use for organizing
+
+lodsb - load byte into register and increment address 
+
+cmp - compare register to value 
+
+je = jump equal 
+
+0eh = command to bios. so when you move it to register it will print 1 char to screen
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+example writing a character
+
+ah and al are 1 byte registers in processor. so we move hex 0e into ah, then move 'A' into
+al. 'A' means binary equivbalent of it. int 10h means call interrupt 10h, which is a bios routine
+, 
+
+
+mov ah, 0eh
+mov al, 'A',
+int 10h
+
+mov - moving data to some memory or register
+
+register - storage unit in processor, 

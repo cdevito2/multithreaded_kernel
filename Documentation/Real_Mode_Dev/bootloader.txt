@@ -1,0 +1,38 @@
+Lecture 1 : 
+ORG 0x7C00 - bios loads there so our offset has to start at this poisition
+BITS 16 - using 16 bit architecture, assemble into 16 bit machine code
+int 0x10 is linux interrupt, calling bios routine. this says to output char 'A' to terminal
+0eh is command to do that, and 'A' is the char we are printed. 
+
+ifwe look at the bios instruction docs
+
+int 0x10 : AH = 0eh means video - teletype output
+
+we need boot signature 55aa on last 2 bytes:
+
+times 510-($-$$) db 0
+dw 0xAA55 - not 55AA because intel machines are little endian
+
+times line says we need to fill 510 bytes of data. if we dont it will pad the rest with 0
+if we fill 510 bytes of data then it just move 55 AA into the last 2 bytes
+
+
+NEXT:
+
+nasm -f bin ./boot.asm -o ./boot.bin
+
+-> we want raw binary output because proc has no concept of file systems/formats etc
+-> a binary file is just a file without files, everything is condensed, just the raw code
+
+ndisasm ./boot.bin to see the disassembly output
+
+
+HELLO WORLD BOOTLOADER
+
+1 - we move the address of our message label into SI register
+2 - we call print subroutine, set BX to 0 for page number stuff
+3 - we call lodsb, which checks where SI is pointing, and puts 'H' into AL register
+4 - we check if AL register is 0, its not so we call print_char
+5 - we set ah to 0eh because thats the output screen fcn when talking with bios
+6 - we call interrupt 0x10 to invoke bios. bios will take char from AL register and output to screen
+7 - repeat until 0, cmp al,0 fails so we jump to done and call ret. 

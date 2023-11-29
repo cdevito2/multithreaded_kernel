@@ -1,0 +1,29 @@
+registers
+
+- tiny mem regions in process itself.
+- mov ah, 30 = move decimal 30 into ah register
+- AH and AL registers help build AX register. when you talk with AH you
+  talk with the high byte of AX register. 
+
+DS - data segments
+
+absolute address by taking segment value , multiply it by 16 and add our offset
+
+segmentation is needed because 16 bits cant hold the whole address
+
+so we have a segment register which stores the offset of where data is stored
+
+ex) if segment is 0700, and we do mov [0xff], 0x30, we are moving 0x30 into 
+    0700:00FF 
+
+
+IP - IP is program counter which instructions are running in mem currently
+
+ex)
+
+jmp _test
+
+_test:
+
+this just changes the IP register to point to _test
+
