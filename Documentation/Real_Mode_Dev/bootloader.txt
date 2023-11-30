@@ -36,3 +36,17 @@ HELLO WORLD BOOTLOADER
 5 - we set ah to 0eh because thats the output screen fcn when talking with bios
 6 - we call interrupt 0x10 to invoke bios. bios will take char from AL register and output to screen
 7 - repeat until 0, cmp al,0 fails so we jump to done and call ret. 
+
+
+
+IMPROVING BOOTLOADER
+ - setting up segment registers and changing program origin
+ - currently no guarantee that it will boot on most systems
+ - if bios sets our DS to 0x7C0 and our program origin is 0x7C0.
+ - absolute address would be 0x7C0 * 16 + 0x7C0 , which does not point to our message
+ - set segments ourselves
+
+ MAKING BOOTLOADER READY TO BOOT ON REAL DEVICE
+ - some bios will tamper with data if you boot bootloader from USB stick
+ - due to BIOS parameter block
+ - we need to add 33 bytes before we start doing any of our segment registers

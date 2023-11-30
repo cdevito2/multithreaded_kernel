@@ -1,0 +1,62 @@
+modern intel processors start in this - its compatibility mode called real mode
+
+only access 1 GB of ram, 16 bits accesible at 1 time
+
+memory access through segmentation memory model
+--- use of segments and offsets
+
+acts like the older intel processors from the 1970s
+
+modern OS set up rules to protect areas of memory. when in OS simple user programs can destroy
+
+the highest numver we can access is 65535, so we can only access an offset of that 
+
+
+
+SEGMENTATION MEMORY MODEL 
+- mem accesseed by segment and offset. 
+- programs can be loaded in different areas of memory but run without problems
+- multiple segments are avaibale through segment registers
+
+segment registers - CS, SS, DS, ES (code, stack, data, extra)
+
+absolute position in ram for byte - take segment register , multiply by 16 and add offset 
+
+this combo^ allows us to acces upto 1MB of RAM in real mode
+
+ex) code segment at 0x7c0, assembly origin 'org' is zero
+
+- our first instruction at origin 0, so offset 0 
+0x7c0 * 16 = 0x7c00 + 0 = 0x7C00
+
+ex for absoulte address 0x7CFF)
+
+segment 0, offset 0x7CFF ( 0*16+0x7CFF = 0x7CFF)
+segment ox7c0, offset 0xFF (0x7C0 * 16 + 0xFF = 0x7CFF)
+segment 0x7cf, offset 0x0F ... and so on 
+
+
+different instructions use different segment registers (lodsb uses DS:SI register combo)
+
+
+
+
+
+
+INTERRUPT VECTOR TABLE
+- interrupts are subroutines but we dont need to know mem address to invoke them
+- interrupts are called through the use of interrupt numbers rather than mem address
+- interrupts can be setup by programmer. for example you could set up interrupt 0x32 and
+  have it point to your code, then when someone does int 0x32 it will invoke the code
+
+- when you invoke interrupt, processor is interrupted, old state saved on stack(including return addr)
+ and the interrupt is executed
+
+- IVT is a table describing where these interrupts are in memory. each entry is 4 bytes
+- first 2 bytes are offset in memory, second 2 are the segment in memory
+- we have 256 interrupt handlers in table 
+- interuupts are in numerical order 
+
+
+
+

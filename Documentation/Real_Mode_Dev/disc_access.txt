@@ -1,0 +1,37 @@
+files do not actually exist on disk. files are a kernel OS concept
+on discks we haave filesystems which are DS that explain files. it is upto
+kernel to read teh DS correctly. 
+
+Disc just holds loads of data blocks called sectors
+
+implementing a filesystm requires the kernel to have a filesystem driver
+
+Data is read and written in sectors typically 512 byte blocks
+
+reading sector of disk will return 512 bytes of data for a sector 
+
+OLD style of reading Disc
+
+CHS (cylinder head sector)
+-- sectors are read and written y specifying a head, track , and sector 
+-- isnt modern. and more complicated as we need to know how many tracks sectors etc 
+
+MODERN style
+
+LBA( logical block address)
+-- rather than specify head track sector we just specify a numer that starts from 0
+-- allows us to read from disc as if we are reading blocks from a large file 
+-- LBA 0 = first sector on disc, LBA 1 = second sector
+
+calculating LBA
+ex) want to read byte at position 58376 on the disc
+
+LBA = 58376 / 512 = 114
+now if we read that LBA we can load 512 bytes into memory 
+now need to know our off that our byte is in the buffer
+
+offset = 58373 % 512 = 8
+
+to confirm we are correct : 
+
+114 (LBA) * 512 (#of bytes in LBA) = 58368 + 8(offset) = 58376 
