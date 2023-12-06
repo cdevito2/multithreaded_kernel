@@ -1,0 +1,38 @@
+- processor state in x86 architectures which gives access to 4GB of address space and many mode
+
+- can probide memory and hardware protection, and different memory schemes 
+
+
+MEM and HARDWARE PROTECTION 
+- protect memory from bein accessed
+- prevent user programs talking with hardware 
+- you have different protection levels in processor with different priveleges
+- ring 0 = you can do anything, destroy memory, etc 
+- kernel runs on ring 0 
+- some device drivers on ring 1. 
+- ring 3 is least priveleged. you put the processor into ring 3 when 
+  running user code prevent user programs from accing memory, etc 
+
+DIFFERENT MEMORY schemes
+- paging - remapping memory addresses
+- selectors 
+
+Selector memory schemes
+- our segmentation registers become selector registers
+- selectors point to data structures that describe memory ranges and permissions
+  to access given ranges 
+
+Paging schemes
+- most popular scheme 
+- you have virtual addresses, and you can point these to physical addresses
+- eaiser to control memory protection
+- allows all programs to believe they are loaded at same address and map
+  out all user programs in memory. 
+- can map multiple processes at the same address 
+- basically a directory of pointers to page tables
+
+4GB of addressible memory
+- access to 32 bit instructions and work with 32 bit registers
+- essentially writing a 32 bit kernel at this point 
+- no longer at limit of 1 MB of memory provided by real mode 
+

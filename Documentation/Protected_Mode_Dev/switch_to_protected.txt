@@ -1,0 +1,17 @@
+osdev going to protected mode web page 
+
+before switching to protected you must
+
+-disable interrupts
+-enable a20 line
+-load Global descriptor table 
+
+CLI command - disable interrupts
+LGDT - load descriptor table, then we set protection enable bit in CR0 register
+
+then you jump with selector and offset being absolute address to what you want to load
+then you are in protected mode 
+
+GDT - contains entries telling CPU about mem segments. expects location of GDT desc structure 
+
+we will use paging so we dont care about the GDT too much 
