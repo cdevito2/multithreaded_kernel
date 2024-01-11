@@ -1,0 +1,6 @@
+building gcc cross compiler
+
+first install some dependencies - build-essential, aaand there is a whole list to iiinstall on osdev
+
+
+then weeeeeeeee need to download source code for binutils and gcc 

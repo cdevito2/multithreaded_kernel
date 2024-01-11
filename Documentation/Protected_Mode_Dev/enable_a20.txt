@@ -1,0 +1,2 @@
+in/out instructions read/write toprocessor bus
+
