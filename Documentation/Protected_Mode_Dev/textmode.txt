@@ -1,0 +1,30 @@
+allows you to write ascii to video memory, supports 16 unique colors
+no need to set individual pixels for printing characters
+
+you write ascii chars to mem starting at address 0xB8000 for colored displays
+or for monochrome displays address 0xB0000
+
+each ascii character written to this memory has its pixel equivalent outputted 
+to the monitor
+
+no need to reference any table and output character pixel by pixel. video card
+does the heavy work
+
+you take your ascii value, write it into memory, video card reference a table and sets
+the pixels
+
+each char takes up two bytes
+
+byte 0 = ascii achar, byte 1 = colour code 
+
+ex black 'A' at row 0 column 0
+
+0xb8000 = 'A'
+0xb0001 = '0x00' - black code
+
+ex black 'B' at row 0 column 1
+0xb0002 = 'B'
+0xb0003 = 0x00
+
+
+
