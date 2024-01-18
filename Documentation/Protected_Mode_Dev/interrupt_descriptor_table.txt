@@ -1,0 +1,60 @@
+in real mode interupt vector table is used
+in protected mode the interrupt descriptor table is used
+
+1-the table describes how interrupts are invoked in protected mode
+2-can be mapped anywhere in memory
+3-different from the interrupt vector table
+
+1)
+it is a bunch of interrupt descriptors. the desciptor explains the interrupt in question
+the interrupt is based on offset
+
+see table in lecture. There is the Offset, P, DPL, S, Type, 0, Selector, Offset
+
+__atribute__((packed)) means c tries to allign structure, by adding this it 
+keeps it as it is. 
+
+interupt descriptor structure
+
+struct idt_desc {
+    uint16_t offset_1; //offset bits 0..15 
+    uint16_t selector; //code segment selectorin GDT or LDT
+    uint8_t zero; //unused , set to 0
+    uint8_t type_attr; //type and attributes
+    uint16_t offset_2; //offset bits 16..31
+}
+
+Gate types 
+-task gate references TSS descriptors 
+- 16 bit interrupt gate - use for when we want to invoke interrupt in code
+- 16 bit trap gate - like interrupt gates but used for exceptions 
+- 32 bit interrupt gate
+- 32 bit trap gate 
+
+we use the 32 bit interrupt gate 
+
+
+interrupt descirpts are stored in an array with index 0 definining interrupt 0
+index 1 defines interrupt 1 and so on
+
+struct idt_desc idt_desc[CO32_MAX_INTERRUPTS]
+
+
+IDTR
+
+structure that points to interrupt desciptor table 
+
+Limit = bits 0..15 which is the length of the IDT minus 1
+Base = bits 16..47 which is the address of IDT
+
+struct idtr_desc{
+    uint16_t limit;
+    uint32_t base;
+}__atribute__((packed));
+
+
+
+IDT can be defined where we like in memory
+they are setup differently than interrupt vector tables
+during an interrupt certain properties can be pushed to the stack.these
+rules involved are compicated and do not always apply
