@@ -1,6 +1,7 @@
 #ifndef __IDT_H__
 #define __IDT_H__
 
+#include <stdint.h>
 /*struct for interrupt descriptor table descriptor */
 
 struct idt_desc{
@@ -17,5 +18,7 @@ struct idtr_desc{
     uint32_t base; //base address at start of the IDT  
 
 }__attribute__((packed));
+
+void idt_init();
 
 #endif
