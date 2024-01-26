@@ -91,11 +91,9 @@ void print(const char *str)
 
 }
 
-extern void problem();
 void kernel_main()
 {
     terminal_initialize();
     print("Hello World!");
     idt_init();//initialize interrupt descriptor table
-    problem();
 }
